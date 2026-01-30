@@ -10,10 +10,10 @@ pub struct HealthController {
 }
 
 impl HealthController {
-    pub fn new() -> Self {
+    /// Create a new health controller with injected dependencies
+    pub fn new(health_service: Arc<HealthService>) -> Self {
         Self {
-            //initialize dependencies here
-            health_service: Arc::new(HealthService::new()),
+            health_service,
         }
     }
 
@@ -23,13 +23,12 @@ impl HealthController {
     pub async fn health_check(
         State(controller): State<Arc<Self>>
     ) -> (StatusCode, Json<HealthResponse>) {
-        let response = controller.health_service.health_check();
+        let response = controller.check_health();
         (StatusCode::OK, Json(response))
     }
-}
 
-impl Default for HealthController {
-    fn default() -> Self {
-        Self::new()
+    //delegate to the health service to perform the check
+    fn check_health(&self) -> HealthResponse {
+        self.health_service.health_check()
     }
 }

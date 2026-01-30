@@ -1,4 +1,5 @@
 use serde::{Deserialize, Serialize};
+use rusty_resty_core::Injectable;
 
 /// Response type for the health check endpoint.
 #[derive(Debug, Serialize, Deserialize)]
@@ -6,12 +7,13 @@ pub struct HealthResponse {
     pub status: String,
 }
 
-#[derive(Clone)]
 pub struct HealthService {
     //state here
 }
 
-impl HealthService 
+impl Injectable for HealthService {}
+
+impl HealthService
 {
     pub fn new() -> Self {
         Self {
