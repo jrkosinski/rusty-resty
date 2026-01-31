@@ -1,9 +1,9 @@
 [package]
-name = "rusty-resty-core"
+name = "rustapi-core"
 version = "0.1.0"
 edition = "2021"
 authors = []
-description = "Core runtime for rusty-resty framework"
+description = "Core runtime for rustapi framework"
 license = "MIT OR Apache-2.0"
 
 [dependencies]

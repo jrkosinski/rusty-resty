@@ -1,12 +1,12 @@
-//! Minimal "Hello World" example using rusty-resty
+//! Minimal "Hello World" example using rustapi
 //!
 //! This demonstrates the simplest possible usage of the framework.
 
-use rusty_resty::prelude::*;
+use rustapi::prelude::*;
 
 #[get("/")]
 async fn hello() -> &'static str {
-    "Hello, rusty-resty!"
+    "Hello, rustapi!"
 }
 
 #[get("/greet/{name}")]

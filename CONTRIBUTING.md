@@ -1,6 +1,6 @@
-# Contributing to rusty-resty
+# Contributing to rustapi
 
-Thank you for your interest in contributing to rusty-resty! We welcome contributions from everyone.
+Thank you for your interest in contributing to rustapi! We welcome contributions from everyone.
 
 ## Code of Conduct
 
@@ -42,8 +42,8 @@ Enhancement suggestions are tracked as GitHub issues. When creating an enhanceme
 
 ```bash
 # Clone your fork
-git clone https://github.com/yourusername/rusty-resty.git
-cd rusty-resty
+git clone https://github.com/yourusername/rustapi.git
+cd rustapi
 
 # Build the project
 cargo build
@@ -81,6 +81,7 @@ All code must pass `cargo fmt --check` and `cargo clippy` before being merged.
 - Add a detailed description if needed, separated by a blank line
 
 Example:
+
 ```
 Add user authentication endpoint
 

@@ -1,6 +1,6 @@
-//! Rusty-Resty Core
+//! RustAPI Core
 //!
-//! Core runtime for the rusty-resty framework, providing:
+//! Core runtime for the rustapi framework, providing:
 //! - Dependency injection container
 //! - Application builder
 //! - Service lifecycle management

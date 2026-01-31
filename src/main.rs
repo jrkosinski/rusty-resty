@@ -6,7 +6,7 @@ use axum::{
 use std::sync::Arc;
 use tower_http::{cors::CorsLayer, trace::TraceLayer};
 use tracing_subscriber::{layer::SubscriberExt, util::SubscriberInitExt};
-use rusty_resty_core::Container;
+use rustapi_core::Container;
 
 mod controllers;
 mod services;
@@ -16,7 +16,7 @@ use controllers::echo_controller::EchoController;
 use services::health_service::HealthService;
 use services::echo_service::EchoService;
 
-/// Main entry point for the rusty-resty REST API server.
+/// Main entry point for the rustapi REST API server.
 /// Demonstrates the DI container pattern inspired by NestJS/FastAPI.
 #[tokio::main]
 async fn main() {
@@ -32,7 +32,7 @@ fn initialize_tracing() {
     tracing_subscriber::registry()
         .with(
             tracing_subscriber::EnvFilter::try_from_default_env()
-                .unwrap_or_else(|_| "rusty_resty=debug,tower_http=debug".into()),
+                .unwrap_or_else(|_| "rustapi=debug,tower_http=debug".into()),
         )
         .with(tracing_subscriber::fmt::layer())
         .init();
@@ -103,5 +103,5 @@ async fn run_server(listener: tokio::net::TcpListener, app: Router) {
 
 /// Root endpoint handler that returns a welcome message.
 async fn root() -> &'static str {
-    "Welcome to rusty-resty!"
+    "Welcome to rustapi!"
 }

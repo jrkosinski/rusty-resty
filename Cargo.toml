@@ -1,12 +1,12 @@
 [package]
-name = "rusty-resty"
+name = "rustapi"
 version = "0.1.0"
 edition = "2021"
 authors = []
 description = "FastAPI-inspired REST framework for Rust with automatic OpenAPI, validation, and DI"
 readme = "README.md"
-homepage = "https://github.com/yourusername/rusty-resty"
-repository = "https://github.com/yourusername/rusty-resty"
+homepage = "https://github.com/yourusername/rustapi"
+repository = "https://github.com/yourusername/rustapi"
 license = "MIT OR Apache-2.0"
 keywords = ["api", "rest", "web", "framework", "fastapi"]
 categories = ["web-programming::http-server"]
@@ -20,8 +20,8 @@ tower = "0.4"
 tower-http = { version = "0.5", features = ["trace", "cors"] }
 tracing = "0.1"
 tracing-subscriber = { version = "0.3", features = ["env-filter"] }
-rusty-resty-core = { path = "crates/rusty-resty-core" }
-rusty-resty-macros = { path = "crates/rusty-resty-macros" }
+rustapi-core = { path = "crates/rustapi-core" }
+rustapi-macros = { path = "crates/rustapi-macros" }
 
 [dev-dependencies]
 criterion = "0.5"

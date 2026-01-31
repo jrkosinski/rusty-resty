@@ -1,5 +1,5 @@
 use serde::{Deserialize, Serialize};
-use rusty_resty_core::Injectable;
+use rustapi_core::Injectable;
 use std::sync::atomic::{AtomicU64, Ordering};
 
 /// Response type for the echo endpoint.

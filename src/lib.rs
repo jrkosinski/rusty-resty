@@ -1,6 +1,6 @@
-//! Rusty-Resty: FastAPI-inspired REST framework for Rust
+//! RustAPI: FastAPI-inspired REST framework for Rust
 //!
-//! Rusty-Resty brings the developer experience of FastAPI and NestJS to Rust,
+//! RustAPI brings the developer experience of FastAPI and NestJS to Rust,
 //! with automatic OpenAPI generation, built-in validation, and dependency injection.
 //!
 //! # Features
@@ -13,7 +13,7 @@
 //! # Quick Start
 //!
 //! ```ignore
-//! use rusty_resty::prelude::*;
+//! use rustapi::prelude::*;
 //!
 //! #[get("/users/{id}")]
 //! async fn get_user(Path(id): Path<String>) -> Json<User> {
@@ -33,9 +33,9 @@
 //!
 //! The framework is organized into several crates:
 //!
-//! - `rusty-resty-core`: DI container and app builder
-//! - `rusty-resty-macros`: Procedural macros for routes
-//! - `rusty-resty` (this crate): Facade that re-exports everything
+//! - `rustapi-core`: DI container and app builder
+//! - `rustapi-macros`: Procedural macros for routes
+//! - `rustapi` (this crate): Facade that re-exports everything
 //!
 //! # Examples
 //!
@@ -45,7 +45,7 @@
 //! - More coming soon!
 
 //re-export core functionality
-pub use rusty_resty_core::{
+pub use rustapi_core::{
     Container,
     Injectable,
     App,
@@ -54,7 +54,7 @@ pub use rusty_resty_core::{
 };
 
 //re-export macros
-pub use rusty_resty_macros::{
+pub use rustapi_macros::{
     get,
     post,
     put,
@@ -78,7 +78,7 @@ pub use serde::{Serialize, Deserialize};
 ///
 /// Import everything you need with:
 /// ```ignore
-/// use rusty_resty::prelude::*;
+/// use rustapi::prelude::*;
 /// ```
 pub mod prelude {
     pub use super::{

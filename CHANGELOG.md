@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
+
 - Initial project setup with Axum framework
 - Basic REST API structure
 - Logging with tracing
@@ -28,9 +29,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [0.1.0] - 2026-01-30
 
 ### Added
+
 - Initial release
 - Project scaffolding
 - Basic Axum server setup
 
-[Unreleased]: https://github.com/yourusername/rusty-resty/compare/v0.1.0...HEAD
-[0.1.0]: https://github.com/yourusername/rusty-resty/releases/tag/v0.1.0
+[Unreleased]: https://github.com/yourusername/rustapi/compare/v0.1.0...HEAD
+[0.1.0]: https://github.com/yourusername/rustapi/releases/tag/v0.1.0

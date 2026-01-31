@@ -1,9 +1,9 @@
 [package]
-name = "rusty-resty-macros"
+name = "rustapi-macros"
 version = "0.1.0"
 edition = "2021"
 authors = []
-description = "Procedural macros for rusty-resty framework"
+description = "Procedural macros for rustapi framework"
 license = "MIT OR Apache-2.0"
 
 [lib]

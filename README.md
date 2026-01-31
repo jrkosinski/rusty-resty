@@ -1,91 +1,182 @@
-# rusty-resty
+# RustAPI 🦀
 
-A REST API server built with Rust and Axum.
+> **FastAPI-inspired REST framework for Rust**
 
-[![CI](https://github.com/yourusername/rusty-resty/actions/workflows/ci.yml/badge.svg)](https://github.com/yourusername/rusty-resty/actions/workflows/ci.yml)
 [![License](https://img.shields.io/badge/license-MIT%20OR%20Apache--2.0-blue.svg)](LICENSE)
-[![Crates.io](https://img.shields.io/crates/v/rusty-resty.svg)](https://crates.io/crates/rusty-resty)
+
+RustAPI brings the developer experience of FastAPI and NestJS to Rust, combining:
+
+- 🎯 **Route Macros** - FastAPI-style endpoint definitions
+- 💉 **Dependency Injection** - Type-safe service container
+- ⚡ **Performance** - Built on Axum + Tokio
+- 🔒 **Type Safety** - Leverage Rust's type system
+- 📝 **Future: Auto OpenAPI** - Documentation that stays in sync (coming soon)
+
+**Status**: 🚧 Active Development | Not yet production-ready
+
+## Quick Start
+
+```rust
+use rustapi::prelude::*;
+
+#[derive(Serialize, Deserialize)]
+struct User {
+    id: String,
+    name: String,
+}
+
+#[get("/")]
+async fn hello() -> &'static str {
+    "Hello, rustapi!"
+}
+
+#[get("/users/{id}")]
+async fn get_user(Path(id): Path<String>) -> Json<User> {
+    Json(User {
+        id: id.clone(),
+        name: format!("User {}", id)
+    })
+}
+
+#[tokio::main]
+async fn main() {
+    let app = Router::new()
+        .route(__hello_route.0, __hello_route.1())
+        .route(__get_user_route.0, __get_user_route.1());
+
+    let listener = tokio::net::TcpListener::bind("0.0.0.0:3000")
+        .await
+        .unwrap();
+
+    axum::serve(listener, app).await.unwrap();
+}
+```
 
 ## Features
 
-- Built with [Axum](https://github.com/tokio-rs/axum) - ergonomic and modular web framework
-- Async runtime powered by [Tokio](https://tokio.rs)
-- Structured logging with [tracing](https://github.com/tokio-rs/tracing)
-- CORS support
-- Production-ready defaults
+### ✅ Implemented
 
-## Getting Started
+- **Route Macros**: `#[get]`, `#[post]`, `#[put]`, `#[delete]`, `#[patch]`
+- **DI Container**: Type-safe service registration and resolution
+- **Prelude Module**: One import for everything you need
+- **Examples**: Working hello_world and full-featured examples
 
-### Prerequisites
+### 🚧 Coming Soon
 
-- Rust 1.75 or higher
-- Cargo
+- **`Inject<T>` Extractor**: Automatic dependency injection in handlers
+- **Validation**: `#[derive(Validate)]` with automatic error responses
+- **OpenAPI Generation**: Auto-generated Swagger docs
+- **Request-Scoped Services**: Per-request service instances
+- **Testing Utilities**: Easy integration testing
 
-### Installation
+## Examples
 
-Clone the repository:
-
-```bash
-git clone https://github.com/yourusername/rusty-resty.git
-cd rusty-resty
-```
-
-### Building
+Run the examples to see the framework in action:
 
 ```bash
-cargo build --release
-```
+# Minimal hello world
+cargo run --example hello_world
 
-### Running
+# Full-featured example
+cargo run --example with_macros
 
-```bash
+# Demo app with DI
 cargo run
 ```
 
-### Testing
+Then test the endpoints:
 
 ```bash
-cargo test
+curl http://localhost:3000/
+curl http://localhost:3000/users/42
 ```
 
-### Linting
+## Architecture
 
-```bash
-cargo clippy -- -D warnings
+```
+rustapi/
+├── crates/
+│   ├── rustapi-core/      # DI container, app builder
+│   ├── rustapi-macros/    # Route macros (#[get], etc.)
+│   └── rustapi/           # Facade crate (main export)
+├── examples/
+│   ├── hello_world.rs         # Minimal example
+│   └── with_macros.rs         # Full-featured example
+└── src/
+    ├── lib.rs                 # Framework facade
+    └── main.rs                # Demo application
 ```
 
-### Formatting
+## Comparison
 
-```bash
-cargo fmt
-```
+| Feature         | rustapi | axum | actix-web | poem | rocket |
+| --------------- | ------- | ---- | --------- | ---- | ------ |
+| Route Macros    | ✅      | ❌   | ❌        | ❌   | ✅     |
+| Built-in DI     | ✅      | ❌   | ✅        | ❌   | ❌     |
+| Auto OpenAPI    | 🚧      | ❌   | ❌        | ✅   | ❌     |
+| FastAPI-like DX | ✅      | ❌   | ❌        | ~    | ~      |
+| Performance     | ⚡      | ⚡   | ⚡        | ⚡   | ⚡     |
 
-## Usage
+## Documentation
 
-[Add usage examples here]
+- [ARCHITECTURE.md](ARCHITECTURE.md) - Complete architectural vision
+- [PROGRESS.md](PROGRESS.md) - Development progress
+- [TODO.md](TODO.md) - Detailed roadmap
+- [examples/](examples/) - Working code examples
 
-## Configuration
+## Roadmap
 
-[Document configuration options here]
+**Phase 1: Core** ✅
 
-## API Documentation
+- [x] DI Container
+- [x] Route Macros
+- [x] Examples
 
-[Add API documentation or link to it]
+**Phase 2: DX Improvements** 🚧
+
+- [ ] `Inject<T>` extractor
+- [ ] Better route registration
+- [ ] Macro-generated app builder
+
+**Phase 3: Validation** 📋
+
+- [ ] `#[derive(Validate)]`
+- [ ] Automatic validation
+- [ ] Structured error responses
+
+**Phase 4: OpenAPI** 📋
+
+- [ ] Schema generation
+- [ ] Swagger UI
+- [ ] ReDoc support
+
+## Why RustAPI?
+
+**Python/FastAPI developers** get Rust performance with familiar patterns.
+
+**TypeScript/NestJS developers** get dependency injection in Rust.
+
+**Rust developers** get FastAPI-level developer experience.
 
 ## Contributing
 
-Contributions are welcome! Please read [CONTRIBUTING.md](CONTRIBUTING.md) for details on our code of conduct and the process for submitting pull requests.
+This is currently in active development. Contributions welcome!
 
 ## License
 
 This project is licensed under either of:
 
-- Apache License, Version 2.0 ([LICENSE-APACHE](LICENSE-APACHE) or http://www.apache.org/licenses/LICENSE-2.0)
-- MIT license ([LICENSE-MIT](LICENSE-MIT) or http://opensource.org/licenses/MIT)
+- Apache License, Version 2.0 (http://www.apache.org/licenses/LICENSE-2.0)
+- MIT license (http://opensource.org/licenses/MIT)
 
 at your option.
 
-## Acknowledgments
+## Inspiration
 
-- [Axum](https://github.com/tokio-rs/axum) for the excellent web framework
-- [Tokio](https://tokio.rs) for the async runtime
+- **FastAPI** (Python) - Amazing DX, automatic docs
+- **NestJS** (TypeScript) - Dependency injection, modules
+- **Axum** (Rust) - Performance, type safety
+
+---
+
+Built with ❤️ using Rust, Axum, and Tokio.

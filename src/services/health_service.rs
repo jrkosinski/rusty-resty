@@ -1,5 +1,5 @@
 use serde::{Deserialize, Serialize};
-use rusty_resty_core::Injectable;
+use rustapi_core::Injectable;
 
 /// Response type for the health check endpoint.
 #[derive(Debug, Serialize, Deserialize)]
