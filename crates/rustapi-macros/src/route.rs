@@ -88,7 +88,7 @@ pub fn expand_route_macro(
 
     let expanded = quote! {
         //original handler function
-        #func_vis #func
+        #func
 
         //route registration helper
         #[allow(non_upper_case_globals)]

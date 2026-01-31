@@ -1,38 +1,20 @@
-use axum::{extract::State, http::StatusCode, Json};
-use serde::{Serialize, Deserialize};
-use crate::services::echo_service::{EchoResponse, EchoService};
+use axum::{extract::State, Json};
+use serde::{Deserialize, Serialize};
 use std::sync::Arc;
+use crate::services::echo_service::{EchoService, EchoResponse};
 
 /// Request type for the echo endpoint.
 #[derive(Debug, Serialize, Deserialize)]
 pub struct EchoRequest {
-    message: String,
+    pub message: String,
 }
 
-#[derive(Clone)]
-pub struct EchoController {
-    echo_service: Arc<EchoService>
-}
-
-impl EchoController
-{
-    /// Create a new echo controller with injected dependencies
-    pub fn new(echo_service: Arc<EchoService>) -> Self {
-        Self {
-            echo_service
-        }
-    }
-
-    pub async fn echo(
-        State(controller): State<Arc<Self>>,
-        Json(payload): Json<EchoRequest>
-    ) -> (StatusCode, Json<EchoResponse>) {
-        let response = controller.process_echo(&payload.message);
-        (StatusCode::OK, Json(response))
-    }
-
-    //delegate to the echo service to process the message
-    fn process_echo(&self, message: &str) -> EchoResponse {
-        self.echo_service.echo(message)
-    }
+/// Echo endpoint that echoes back the received message.
+/// Uses dependency injection to access the EchoService.
+pub async fn echo(
+    State(service): State<Arc<EchoService>>,
+    Json(payload): Json<EchoRequest>
+) -> Json<EchoResponse> {
+    let response = service.echo(&payload.message);
+    Json(response)
 }
