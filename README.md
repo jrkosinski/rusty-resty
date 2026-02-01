@@ -1,4 +1,4 @@
-# RustAPI 🦀
+# RustAPI
 
 > **FastAPI-inspired REST framework for Rust**
 
@@ -6,13 +6,13 @@
 
 RustAPI brings the developer experience of FastAPI and NestJS to Rust, combining:
 
-- 🎯 **Route Macros** - FastAPI-style endpoint definitions
-- 💉 **Dependency Injection** - Type-safe service container
-- ⚡ **Performance** - Built on Axum + Tokio
-- 🔒 **Type Safety** - Leverage Rust's type system
-- 📝 **Future: Auto OpenAPI** - Documentation that stays in sync (coming soon)
+- **Route Macros** - FastAPI-style endpoint definitions
+- **Dependency Injection** - Type-safe service container
+- **Performance** - Built on Axum + Tokio
+- **Type Safety** - Leverage Rust's type system
+- **Future: Auto OpenAPI** - Documentation that stays in sync (coming soon)
 
-**Status**: 🚧 Active Development | Not yet production-ready
+**Status**: Active Development | Not yet production-ready
 
 ## Quick Start
 
@@ -61,7 +61,7 @@ async fn main() {
 - **Prelude Module**: One import for everything you need
 - **Examples**: Working hello_world and full-featured examples
 
-### 🚧 Coming Soon
+### Coming Soon
 
 - **`Inject<T>` Extractor**: Automatic dependency injection in handlers
 - **Validation**: `#[derive(Validate)]` with automatic error responses
@@ -113,9 +113,9 @@ rustapi/
 | --------------- | ------- | ---- | --------- | ---- | ------ |
 | Route Macros    | ✅      | ❌   | ❌        | ❌   | ✅     |
 | Built-in DI     | ✅      | ❌   | ✅        | ❌   | ❌     |
-| Auto OpenAPI    | 🚧      | ❌   | ❌        | ✅   | ❌     |
+| Auto OpenAPI    | In Progress | ❌   | ❌        | ✅   | ❌     |
 | FastAPI-like DX | ✅      | ❌   | ❌        | ~    | ~      |
-| Performance     | ⚡      | ⚡   | ⚡        | ⚡   | ⚡     |
+| Performance     | High    | High | High      | High | High   |
 
 ## Documentation
 
@@ -132,19 +132,19 @@ rustapi/
 - [x] Route Macros
 - [x] Examples
 
-**Phase 2: DX Improvements** 🚧
+**Phase 2: DX Improvements** (In Progress)
 
 - [ ] `Inject<T>` extractor
 - [ ] Better route registration
 - [ ] Macro-generated app builder
 
-**Phase 3: Validation** 📋
+**Phase 3: Validation** (Planned)
 
 - [ ] `#[derive(Validate)]`
 - [ ] Automatic validation
 - [ ] Structured error responses
 
-**Phase 4: OpenAPI** 📋
+**Phase 4: OpenAPI** (Planned)
 
 - [ ] Schema generation
 - [ ] Swagger UI
@@ -179,4 +179,4 @@ at your option.
 
 ---
 
-Built with ❤️ using Rust, Axum, and Tokio.
+Built using Rust, Axum, and Tokio.
