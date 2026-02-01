@@ -3,7 +3,7 @@
 //! Provides the main `RustAPI` struct for configuring and running the HTTP server.
 
 use crate::error::Result;
-use axum::Router;
+use crate::router::Router;
 use std::net::SocketAddr;
 
 /// Main RustAPI server struct with builder pattern for configuration
@@ -62,6 +62,7 @@ impl RustAPI {
 
         tracing::info!("Server running on http://{}", socket_addr);
 
+        // Router is already Axum's router (type alias), serve it directly
         axum::serve(listener, self.router)
             .await
             .map_err(|e| crate::error::Error::server_error(format!("Server error: {}", e)))
@@ -74,7 +75,7 @@ mod tests {
 
     #[test]
     fn test_rustapi_defaults() {
-        let router = Router::new();
+        let router = crate::router::new();
         let server = RustAPI::new(router);
         assert_eq!(server.port, 3000);
         assert_eq!(server.host, "0.0.0.0");
@@ -82,7 +83,7 @@ mod tests {
 
     #[test]
     fn test_rustapi_builder() {
-        let router = Router::new();
+        let router = crate::router::new();
         let server = RustAPI::new(router)
             .port(8080)
             .host("127.0.0.1");
