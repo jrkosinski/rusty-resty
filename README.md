@@ -41,8 +41,8 @@ async fn get_user(Path(id): Path<String>) -> Json<User> {
 #[tokio::main]
 async fn main() {
     let app = Router::new()
-        .route(__hello_route.0, __hello_route.1())
-        .route(__get_user_route.0, __get_user_route.1());
+        .route(__hello_route, routing::get(hello))
+        .route(__get_user_route, routing::get(get_user));
 
     let listener = tokio::net::TcpListener::bind("0.0.0.0:3000")
         .await
@@ -96,15 +96,13 @@ curl http://localhost:3000/users/42
 ```
 rustapi/
 ├── crates/
-│   ├── rustapi-core/      # DI container, app builder
-│   ├── rustapi-macros/    # Route macros (#[get], etc.)
-│   └── rustapi/           # Facade crate (main export)
+│   ├── rustapi/           # Main crate (DI, app builder, server, router)
+│   └── rustapi-macros/    # Route macros (#[get], etc.)
 ├── examples/
-│   ├── hello_world.rs         # Minimal example
-│   └── with_macros.rs         # Full-featured example
-└── src/
-    ├── lib.rs                 # Framework facade
-    └── main.rs                # Demo application
+│   ├── hello_world.rs     # Minimal example
+│   ├── with_macros.rs     # Full-featured example
+│   └── basic-api/         # Complete app with controllers and services
+└── Cargo.toml             # Workspace configuration
 ```
 
 ## Comparison

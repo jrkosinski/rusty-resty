@@ -56,11 +56,15 @@ impl Parse for RouteArgs {
 ///
 /// This transforms:
 /// ```ignore
-/// #[get("/users/:id")]
-/// async fn get_user(path: Path<String>) -> Json<User> { ... }
+/// #[get("/users/{id}")]
+/// async fn get_user(Path(id): Path<String>) -> Json<User> { ... }
 /// ```
 ///
-/// Into the original function plus a route registration helper.
+/// Into the original function plus a route path constant:
+/// ```ignore
+/// async fn get_user(Path(id): Path<String>) -> Json<User> { ... }
+/// const __get_user_route: &str = "/users/{id}";
+/// ```
 pub fn expand_route_macro(
     method: HttpMethod,
     args: TokenStream,
