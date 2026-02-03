@@ -7,7 +7,7 @@ use proc_macro::TokenStream;
 
 mod route;
 
-use route::{HttpMethod};
+use route::HttpMethod;
 
 /// Define a GET route handler
 ///
