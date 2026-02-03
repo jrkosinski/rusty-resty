@@ -18,6 +18,7 @@ pub enum HttpMethod {
 
 impl HttpMethod {
     //get the axum routing function name for this method
+    #[allow(dead_code)]
     fn axum_method(&self) -> proc_macro2::TokenStream {
         match self {
             HttpMethod::Get => quote! { get },
