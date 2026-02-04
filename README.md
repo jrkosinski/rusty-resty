@@ -8,7 +8,9 @@
 [![Build Status](https://github.com/jrkosinski/rustapi/workflows/CI/badge.svg)](https://github.com/jrkosinski/rustapi/actions)
 [![Rust Version](https://img.shields.io/badge/rust-1.70%2B-blue.svg)](https://www.rust-lang.org)
 
-RustAPI brings the developer experience of FastAPI and NestJS to Rust, combining:
+**Motivation**: to make it as easy as possible to spin up a quick REST API in Rust with minimal plumbing code. 
+
+FastAPI in Python, and NestJS in JS/TS, make it easy to spin up a REST API. There are plenty of good reasons in which you might need a REST API defined in Rust, providing access (perhaps internal) to code that is best done in Rust. What I want is a FastAPI-like experience in Rust. This crate attempts to give that, as much as possible. The class-first definition of FastAPI, the dependency-injection features of NestJS. It offers:
 
 - **Route Macros** - FastAPI-style endpoint definitions
 - **Dependency Injection** - Type-safe service container
@@ -75,7 +77,7 @@ async fn main() {
 
 ## Examples
 
-Run the examples to see the framework in action:
+Run the examples to see the framework working:
 
 ```bash
 # Minimal hello world
@@ -139,6 +141,7 @@ rust-api/
 - [ ] `Inject<T>` extractor
 - [ ] Better route registration
 - [ ] Macro-generated app builder
+- [ ] Reflection-like definition without actual reflection: define a class that becomes the API
 
 **Phase 3: Validation** (Planned)
 
